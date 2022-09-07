@@ -7,5 +7,5 @@ echo value of a is: $a
 echo $a
 echo $b
 echo value of d is: $d
-DATE=2022-09-05
+DATE=$(date +%F)
 echo todays date is : $DATE
