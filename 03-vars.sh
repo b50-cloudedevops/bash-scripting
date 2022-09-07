@@ -6,3 +6,4 @@ BASH: Born Again Shell
 echo value of a is: $a 
 echo $a
 echo $b
+echo value of d is: $d
