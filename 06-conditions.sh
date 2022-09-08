@@ -9,4 +9,7 @@ case $ACTION in
       ;;
     restart)
       echo "restarting XYZ service"
+      ;;
+      *)
+      echo "vaild options are start or stop or restart only"
 esac
