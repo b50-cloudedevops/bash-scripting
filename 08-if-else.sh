@@ -14,3 +14,8 @@ else
  echo "only valid option is start"
  exit 2
 fi
+
+#-z will be true, if the supplied input is null
+if [-z $ACTION ]; then
+echo "Argument is needed" 
+fi
