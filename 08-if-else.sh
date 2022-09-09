@@ -3,7 +3,7 @@
 #[-z "$var"]
 #[-n "$var"]
 
-ACTION=$1
+#ACTION=$1
 #if [ "$ACTION" = "start" ] ; then
 # echo "selected choice is start"
 # exit 2
