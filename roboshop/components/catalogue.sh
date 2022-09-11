@@ -8,6 +8,7 @@ curl -sL https://rpm.nodesource.com/setup_lts.x | bash   >> /tmp/${COMPONENT}.lo
 stat $?
 echo -n "Installing nodejs: "
 yum install nodejs -y >> /tmp/${COMPONENT}.log
+stat $?
 echo -n " Adding ${FUSER} user: "
 useradd roboshop
 stat $?
