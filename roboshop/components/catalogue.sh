@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 source components/common.sh
-COMPONENT= catalogue
+COMPONENT=catalogue
 FUSER=roboshop
 echo -n " Configuring Yum repos for nodejs: "
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -9,7 +9,7 @@ stat $?
 echo -n "Installing nodejs: "
 yum install nodejs -y >> /tmp/${COMPONENT}.log
 echo -n " Adding ${FUSER} user: "
-useradd ${FUSER}
+useradd roboshop
 stat $?
 echo -n "Downloading $COMPONENT: "
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
