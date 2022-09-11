@@ -4,7 +4,7 @@ source components/common.sh
 COMPONENT=catalogue
 FUSER=roboshop
 echo -n " Configuring Yum repos for nodejs: "
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash   >> /tmp/${COMPONENT}.log
 stat $?
 echo -n "Installing nodejs: "
 yum install nodejs -y >> /tmp/${COMPONENT}.log
