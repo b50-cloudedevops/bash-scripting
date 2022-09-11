@@ -6,7 +6,7 @@ fi
 
 
 stat() {
-if [ $? -eq 0 ]; then
+if [ $1 -eq 0 ]; then
   echo -e "Success"
 else
  echo -e "failure, look for the logs"
