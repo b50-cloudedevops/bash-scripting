@@ -20,11 +20,19 @@ stat $?
 
 echo -n "CLeanup of old ${COMPONENT} content: "
 rm -rf /home/${FUSER}/${COMPONENT} >> /tmp/${COMPONENT}.log
+stat $?
+
 echo -n "Extracting $COMPONENT content: "
-cd /home/${FUSER}
+cd /home/${FUSER}/ >> /tmp/${COMPONENT}.log
 unzip -o /tmp/${FUSER}.zip >> /tmp/${COMPONENT}.log && mv ${COMPONENT}-main ${COMPONENT} >> /tmp/${COMPONENT}.log
 stat $?
+
+echo -n "Changing the ownership to $FUSER: "
+chown $FUSER:$FUSER $COMPONENT/
+
 cd /home/roboshop/catalogue
+
+
 echo -n "Installing $COMPONENT Dependencies: "
 npm install >> /tmp/${COMPONENT}.log
 stat $?
