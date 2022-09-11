@@ -1,9 +1,9 @@
 #!/bin/bash
-
+set -e # ensures your script will stop if any of the instruction fails
 source components/common.sh
 
 yum install nginx -y >> /tmp/frontend.log
-systmectl enable nginx
+systemctl enable nginx
 systemctl start nginx
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 cd /usr/share/nginx/html
