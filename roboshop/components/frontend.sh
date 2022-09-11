@@ -23,6 +23,6 @@ stat $?
 echo -n "configuring the reverse proxy"
 mv localhost.conf  /etc/nginx/default.d/roboshop.conf 
 systemctl restart nginx
-echo -n "staring the nginx"
+echo -n "staring the nginx: "
 stat $?
 
