@@ -3,6 +3,11 @@ set -e # ensures your script will stop if any of the instruction fails
 source components/common.sh
 echo "Installing nginx"
 yum install nginx -y >> /tmp/frontend.log
+if [ $? -eq 0 ]; then
+  echo -e "Success"
+else
+ echo -e "failure, look for the logs"
+fi
 systemctl enable nginx
 echo "starting nginx"
 systemctl start nginx
