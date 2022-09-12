@@ -18,12 +18,9 @@ echo -n "Downloading $COMPONENT: "
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" >> /tmp/${COMPONENT}.log
 stat $?
 
-echo -n "CLeanup of old ${COMPONENT} content: "
-rm -rf /home/${FUSER}/${COMPONENT} >> /tmp/${COMPONENT}.log
-stat $?
 
 echo -n "Extracting $COMPONENT content: "
-cd /home/${FUSER}/ >> /tmp/${COMPONENT}.log
+cd /home/${FUSER} >> /tmp/${COMPONENT}.log
 unzip -o /tmp/${COMPONENT}.zip >> /tmp/${COMPONENT}.log  &&  mv ${COMPONENT}-main ${COMPONENT}  >>  /tmp/${COMPONENT}.log
 stat $?
 
