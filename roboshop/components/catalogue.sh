@@ -15,7 +15,7 @@ id ${FUSER} || useradd ${FUSER}
 stat $?
 
 echo -n "Downloading $COMPONENT: "
-curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip" >> /tmp/${COMPONENT}.log
 stat $?
 
 echo -n "CLeanup of old ${COMPONENT} content: "
@@ -24,15 +24,14 @@ stat $?
 
 echo -n "Extracting $COMPONENT content: "
 cd /home/${FUSER} >> /tmp/${COMPONENT}.log
-unzip -o /tmp/${COMPONENT}.zip >> /tmp/${COMPONENT}.log && mv ${COMPONENT}-main ${COMPONENT} >> /tmp/${COMPONENT}.log
+unzip -o /tmp/${COMPONENT}.zip >> /tmp/${COMPONENT}.log  &&  mv ${COMPONENT}-main ${COMPONENT}  >>  /tmp/${COMPONENT}.log
 stat $?
 
 echo -n "Changing the ownership to $FUSER: "
-chown $FUSER:$FUSER $COMPONENT/
+chown -R $FUSER:$FUSER $COMPONENT/
 
-cd /home/roboshop/catalogue
 
 
 echo -n "Installing $COMPONENT Dependencies: "
-npm install >> /tmp/${COMPONENT}.log
+cd $COMPONENT && npm install >> /tmp/${COMPONENT}.log
 stat $?
