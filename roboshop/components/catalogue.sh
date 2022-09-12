@@ -14,7 +14,7 @@ echo -n " Adding ${FUSER} user: "
 id ${FUSER} || useradd ${roboshop}
 stat $?
 
-su - roboshop 
+sudo su - roboshop 
 echo -n "Downloading $COMPONENT: "
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
 stat $?
