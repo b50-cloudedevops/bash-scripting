@@ -33,3 +33,13 @@ chown -R $FUSER:$FUSER $COMPONENT/
 echo -n "Installing $COMPONENT Dependencies: "
 cd $COMPONENT && npm install >> /tmp/${COMPONENT}.log
 stat $?
+
+echo -n "configuring the systemd file: "
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal' /home/${FUSER}/${COMPONENT}/systemd.service
+mv /home/${FUSER}/${COMPONENT}/systemd.service /etc/systemd/system/catalogue.service
+stat $?
+
+echo -n "Starting the service: "
+systemctl daemon-reload &>> /tmp/${COMPONENT}.log
+systemctl enable catalogue &>> /tmp/${COMPONENT}.log
+systemctl start catalogue &>> /tmp/${COMPONENT}.log
