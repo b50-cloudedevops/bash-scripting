@@ -26,8 +26,9 @@ stat $?
 
 for component in catalogue user ; do 
 echo -n "updating proxy file: "
-sed -e "/${component}/s/localhost/${component}.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
+sed -i -e "/${component}/s/localhost/${component}.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
 stat $?
+done
 systemctl restart nginx
 echo -n "staring the nginx: "
 stat $?
