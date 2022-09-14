@@ -4,7 +4,7 @@ source components/common.sh
 COMPONENT=payment
 
 echo -n "Installing python!: "
-yum install python36 gcc python3-devel -y
+yum install python36 gcc python3-devel -y >> ${LOGFILE}
 stat $?
 USER_SETUP
 DOWNLOAD_AND_EXTRACT
