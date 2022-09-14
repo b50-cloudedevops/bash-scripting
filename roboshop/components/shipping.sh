@@ -1,7 +1,21 @@
 #!/bin/bash
+set -e
+source components/common.sh
+COMPONENT=shipping
 
-ID=$(id -u)
-if [ "$ID" -ne "0" ]; then 
-  echo "Try to execute the script with sudo user or root user"
-  exit 1
-fi
+LOGFILE=/tmp/robot.log
+
+echo -n "Installing Maven: "
+yum install maven -y &>> ${LOGFILE}
+stat $?
+
+USER_SETUP
+DOWNLOAD_AND_EXTRACT
+
+echo -n "Generating the artifcat: "
+cd /home/${FUSER}/${COMPONENT}
+mvn clean package &>> ${LOGFILE}
+mv target/shipping-1.0.jar shipping.jar
+stat $?
+
+CONFIG_SVC
