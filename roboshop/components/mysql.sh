@@ -23,7 +23,6 @@ stat $?
 
 
 echo -n "fetching the default root password: "
-gr
 DEFAULT_ROOT_PASSWORD=$(sudo grep temp /var/log/mysqld.log | head -n 1 | awk -F " " '{print $NF}')
 stat $?
 
