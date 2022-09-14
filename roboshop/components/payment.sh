@@ -2,5 +2,11 @@
 set -e
 source components/common.sh
 COMPONENT=payment
-NODEJS
 
+echo -n "Installing python!: "
+yum install python36 gcc python3-devel -y
+stat $?
+USER_SETUP
+DOWNLOAD_AND_EXTRACT
+cd /home/${FUSER}/${COMPONENT}
+pip3 install -r requirements.txt >> ${LOGFILE}
