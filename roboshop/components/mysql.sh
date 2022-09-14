@@ -1,7 +1,23 @@
 #!/bin/bash
 
-ID=$(id -u)
-if [ "$ID" -ne "0" ]; then 
-  echo "Try to execute the script with sudo user or root user"
-  exit 1
-fi
+set -e
+
+source components/common.sh
+
+COMPONENT=mysql
+LOGFILE=/tmp/robot.log
+
+echo -n "configuring the $COMPONENT repo:"
+
+curl -s -L -o /etc/yum.repos.d/${COMPONENT}.repo https://raw.githubusercontent.com/stans-robot-project/mysql/main/mysql.repo >> ${LOGFILE}
+stat $?
+
+echo -n "Installing $COMPONENT: "
+yum install mysql-community-server -y >> ${LOGFILE}
+stat $?
+
+echo -n "Starting ${COMPONENT} : "
+systemctl enable mysqld >> ${LOGFILE}
+systemctl start mysqld >> ${LOGFILE}
+stat $?
+
