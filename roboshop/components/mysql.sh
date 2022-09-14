@@ -26,11 +26,7 @@ echo -n "fetching the default root password: "
 DEFAULT_ROOT_PASSWORD=$(sudo grep temp /var/log/mysqld.log | head -n 1 | awk -F " " '{print $NF}')
 stat $?
 
-echo -n "Uninstalling the password validate plugin: "
-echo 'uninstall plugin validate_password;' > /tmp/password_validate.sql
-mysql --connect-expired-password -uroot -pRoboShop1 < /tmp/password_validate.sql
-
-echo -n "reset password: "
+echo -n "reset root  password: "
 echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" | mysql --connect-expired-password -uroot -p"${DEFAULT_ROOT_PASSWORD}" &>> ${LOGFILE}
 stat $?
 
