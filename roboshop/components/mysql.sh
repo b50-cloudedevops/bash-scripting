@@ -17,7 +17,24 @@ yum install mysql-community-server -y >> ${LOGFILE}
 stat $?
 
 echo -n "Starting ${COMPONENT} : "
-systemctl enable mysqld >> ${LOGFILE}
-systemctl start mysqld >> ${LOGFILE}
+systemctl enable mysqld &>> ${LOGFILE}
+systemctl start mysqld &>> ${LOGFILE}
 stat $?
 
+
+echo -n "fetching the default root password: "
+gr
+DEFAULT_ROOT_PASSWORD=$(sudo grep temp /var/log/mysqld.log | head -n 1 | awk -F " " '{print $NF}')
+stat $?
+
+echo -n "Uninstalling the password validate plugin: "
+echo 'uninstall plugin validate_password;' > /tmp/password_validate.sql
+mysql --connect-expired-password -uroot -pRoboShop1 < /tmp/password_validate.sql
+
+echo -n "reset password: "
+echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" | mysql --connect-expired-password -uroot -p"${DEFAULT_ROOT_PASSWORD}" &>> ${LOGFILE}
+stat $?
+
+echo -n "Uninstall the password validate plugin: "
+echo "uninstall plugin validate_password;" | mysql -uroot -pRoboShop@1 &>> ${LOGFILE}
+stat $?
