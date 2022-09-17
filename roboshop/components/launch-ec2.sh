@@ -1,6 +1,6 @@
 #!/bin/bash
 # AMI_ID=ami-00ff427d936335825
-if [-z  "$1" ]; then
+if [ -z  "$1" ]; then
  echo -n "Input machine name is missing: "
  exit 1
 fi 
