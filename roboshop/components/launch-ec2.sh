@@ -17,10 +17,12 @@ create-server() {
 
   sed -e "s/PRIVATEIP/${PRIVATE_IP}/" -e "s/COMPONENT/${COMPONENT}/" r53.json>/tmp/record.json
   aws route53 change-resource-record-sets --hosted-zone-id Z0175006XAWHYA3OXLXM --change-batch file:///tmp/record.json | jq
+
 }
+
 if [ "$1" == "all" ]; then
   for component in catalogue cart shipping frontend mongodb payment rabbitmq redis mysql user; do 
-   COMPONENT=$component 
+    COMPONENT=$component 
    create-server
   done
 else
