@@ -12,7 +12,7 @@ echo "AMI Id which is fetched $AMI_ID"
 SGID="sg-0c45f649a0dc57860"
 
 echo "The AMI which we are using is $AMI_ID"
-create-server() {
+create_server() {
   PRIVATE_IP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids ${SGID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" --instance-market-options "MarketType=spot, SpotOptions={SpotInstanceType=persistent,InstanceInterruptionBehavior=stop}" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
   echo "Private IP of created machine is $PRIVATE_IP"
   echo "Spot Instance $COMPONENT is ready: "
@@ -26,8 +26,8 @@ create-server() {
 if [ "$1" = "all" ] ; then
   for component in catalogue cart shipping frontend mongodb payment rabbitmq redis mysql user; do 
     COMPONENT=$component 
-    create-server
+    create_server
   done
 else
-   create-server
+   create_server
 fi 
