@@ -1,7 +1,7 @@
 #!/bin/bash
 # AMI_ID=ami-00ff427d936335825
 if [ -z  "$1" ]; then
- echo -n "Input machine name is missing: "
+ echo -e  "Input machine name is missing: "
  exit 1
 fi 
 COMPONENT=$1
@@ -20,10 +20,10 @@ create-server() {
 
 }
 
-if [ "$1" == "all" ] ; then
+if [ "$1" = "all" ] ; then
   for component in catalogue cart shipping frontend mongodb payment rabbitmq redis mysql user; do 
     COMPONENT=$component 
-   create-server
+    create-server
   done
 else
    create-server
