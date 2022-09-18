@@ -1,5 +1,5 @@
 - name: Playbook name is first-playbook
-  hosts: 
+  hosts: all
   tasks:
   - name: Print hello from task1
     ansible.builtin.debug:
