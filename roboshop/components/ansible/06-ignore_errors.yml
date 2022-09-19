@@ -1,0 +1,10 @@
+- name: demo on ignore errors
+  hosts: all
+  tasks:
+   - name: check tomcat is running or not 
+     ansible.builtin.shell: ps -ef | grep java | grep -v grep 
+     ignore_errors: yes 
+
+   - name: performing start
+     ansible.builtin.debug:
+       msg: starting tomcat 

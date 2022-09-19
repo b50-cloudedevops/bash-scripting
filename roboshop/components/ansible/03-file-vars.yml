@@ -2,10 +2,8 @@
   hosts: all
   vars: #global variable
     URL: play.google.com
-  #vars_prompt:
-  # - name: URL
-  #    prompt: Enter URL 
-  #    private: no 
+  vars_files:
+    - dev-vars.yml
   tasks:
     - name: printing URL
       ansible.builtin.debug:
@@ -16,9 +14,10 @@
        msg: "{{URL}}"
       vars:   #local variable
         URL: task.google.com
-
-    - name: printing URL from CLI
+    
+    - name: URL for this env is
       ansible.builtin.debug:
-       msg: URL from CLI is {{CLI_URL}}
+       msg: "{{ENV}}"
 
-# CLI varibale > local variable >  file variables > prompt variables > global variable
+    
+# CLI varibale > local variable > global variable
