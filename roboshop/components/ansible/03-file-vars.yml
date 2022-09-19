@@ -3,7 +3,7 @@
   vars: #global variable
     URL: play.google.com
   vars_files:
-    - dev-vars.yml
+    - prod-vars.yml
   tasks:
     - name: printing URL
       ansible.builtin.debug:
