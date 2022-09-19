@@ -17,8 +17,8 @@
       vars:   #local variable
         URL: task.google.com
 
-    - name: printing URL from CLI
-      ansible.builtin.debug:
-       msg: URL from CLI is {{CLI_URL}}
+   # - name: printing URL from CLI
+   #   ansible.builtin.debug:
+#   msg: URL from CLI is {{CLI_URL}}
 
 # CLI varibale > local variable >  file variables > prompt variables > global variable
