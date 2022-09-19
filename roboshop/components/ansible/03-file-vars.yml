@@ -20,4 +20,4 @@
        msg: "{{ENV}}"
 
     
-# CLI varibale > local variable > global variable
+# CLI varibale > local variable > file variables > global variable
