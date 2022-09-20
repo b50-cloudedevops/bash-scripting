@@ -1,6 +1,6 @@
 - name: Installing nginx
   package:
-   - name: yum
+   - name: nginx
      state: present
 
 - name: Download and extract
@@ -8,4 +8,3 @@
   src: https://github.com/stans-robot-project/frontend/archive/main.zip
   dest: /usr/share/nginx/html
   remote_src: yes
-   
