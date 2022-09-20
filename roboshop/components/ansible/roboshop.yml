@@ -1,4 +1,4 @@
-- name: Roboshop project https://github.com/stans-robot-project/frontend/archive/main.zip
+- name: Roboshop project 
   hosts: frontend 
   become: yes 
   roles:
